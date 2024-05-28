@@ -76,8 +76,6 @@ function beispielFetchFormulardaten(code, playstory, timestamp) {
 }
 
 
-
-
 function loescheCodes() {
     fetch("https://372401-15.web.fhgr.ch/php/loeschCode.php")
     .then((res) => res.json())
