@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>QR-Code Scannen</h1>
-    <p>QR-Code scannen und Code auf Ihrem Handy eingeben, um die Story zu starten.</p>
-    <img src="https://via.placeholder.com/200x200" alt="QR-Code">
-    <p id="status">Status: Warten auf Scan...</p>
-    <p id="code">Ihr Code: Wird generiert...</p>
-    <div id="mobile-warning" style="display: none;">
-    
-        <p>Bitte besuchen Sie <a href="http://qr-hikikomori.ch">qr-hikikomori.ch</a> auf einem Computer, um fortzufahren.</p>
+    <div class="video-background">
+        <video autoplay loop muted>
+            <source src="/vids/5sek.mov" type="video/mp4">
+            Ihr Browser unterstützt das Video-Tag nicht.
+        </video>
+    </div>
+    <div class="content">
+        <h1>QR-Code Scannen</h1>
+        <p>QR-Code scannen und Code auf Ihrem Handy eingeben, um die Story zu starten.</p>
+        <img src="https://via.placeholder.com/200x200" alt="QR-Code">
+        <p id="status">Status: Warten auf Scan...</p>
+        <p id="code">Ihr Code: Wird generiert...</p>
+        <div id="mobile-warning">
+            <p>Bitte besuchen Sie <a href="http://qr-hikikomori.ch">qr-hikikomori.ch</a> auf einem Computer, um fortzufahren.</p>
+        </div>
     </div>
     <script src="/js/script.js"></script>
 </body>
