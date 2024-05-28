@@ -1,7 +1,7 @@
 function startStory() {
     document.getElementById('status').textContent = 'Status: QR-Code gescannt. Die Story startet jetzt!';
     document.body.style.backgroundColor = 'red';
-    localStorage.setItem('playStory', 'true'); // Set playStory to true
+    localStorage.setItem('playStory', '1'); // Set playStory to true
 }
 
 function detectMobile() {
@@ -28,7 +28,7 @@ function generateRandomCode() {
 function initialize() {
     // Check if playStory exists in localStorage
     if (!localStorage.getItem('playStory')) {
-        localStorage.setItem('playStory', 'false'); // Set default value to false
+        localStorage.setItem('playStory', '0'); // Set default value to false
     }
 
     // Detect if the user is on a mobile device
@@ -40,4 +40,48 @@ function initialize() {
     document.getElementById('code').textContent = 'Ihr Code: ' + randomCode;
 }
 
-window.onload = initialize;
+window.onload = function() {
+    initialize();
+    registrieren();
+    loescheCodes();
+}
+
+
+function registrieren() {
+    let code = localStorage.getItem('randomCode');
+    let playstory = localStorage.getItem('playStory');
+    let timestamp = new Date().toISOString().slice(0, 19).replace('T', ' ');
+
+    console.log(code, playstory, timestamp);
+
+    beispielFetchFormulardaten(code, playstory, timestamp);
+}
+
+function beispielFetchFormulardaten(code, playstory, timestamp) {
+    let formData = new FormData();
+    formData.append('code', code);
+    formData.append('playstory', playstory);
+    formData.append('timestamp', timestamp);
+
+    fetch("https://372401-15.web.fhgr.ch/php/registrieren.php", {
+        body: formData,
+        method: "post",
+    })
+    .then((res) => {
+        return res.text();
+    })
+    .then((data) => {
+        document.querySelector('#server-message').innerHTML = data;
+    });
+}
+
+
+
+
+function loescheCodes() {
+    fetch("https://372401-15.web.fhgr.ch/php/loeschCode.php")
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data.message);
+    });
+}

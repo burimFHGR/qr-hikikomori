@@ -14,14 +14,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.getElementById('codeForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    const codeInput = document.getElementById('codeInput').value;
-    const message = document.getElementById('message');
+    let codeInput = document.getElementById('codeInput').value;
+    let message = document.getElementById('message');
 
     if (codeInput.length === 5) {
         message.textContent = "Code erfolgreich eingereicht!";
         message.style.color = "green";
+        console. log ("Hallo " + codeInput);
+        
     } else {
-        message.textContent = "Bitte geben Sie einen 5-stelligen Code ein.";
+        message.textContent = "Bitte geben Sie einen gültigen 5-stelligen Code ein.";
         message.style.color = "red";
     }
 });
+
+
+
+// function verbinden () {
+
+//     let codeInput = document. querySelector ("#codeInput").value;
+//     console. log ("Hallo " + code);
+// }
+
+
+// function beispielFetchFormulardaten() {
+
+//     let formData = new FormData();
+//     formData.append('codeInput', codeInput);
+
+//     fetch("meinserver.ch/php/daten.php",
+//         {
+//             body: formData,
+//             method: "post",
+//         })
+
+//         .then((res) => {
+
+//             return res.text();
+
+//         })
+//         .then((data) => {
+
+//         document.querySelector('#nachricht').innerHTML = data;
+
+//         })
+
+// }
