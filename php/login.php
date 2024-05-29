@@ -3,37 +3,28 @@ require('config.php');
 
 $code = $_POST["code"];
 
-
-$sql = "SELECT * FROM user WHERE code = '$code'";
-
+$sql = "SELECT * FROM user WHERE code = :code";
 $stmt = $pdo->prepare($sql);
-
+$stmt->bindParam(':code', $code, PDO::PARAM_STR);
 $erfolg = $stmt->execute();
 
 if ($erfolg) {
-
     $array = $stmt->fetchAll();
 
-    $anzahlResultate = count ($array);
-
-    $dbCode = $array[0]['code'];
-    $userID = $array[0]['ID'];
+    $anzahlResultate = count($array);
 
     if ($anzahlResultate == 1) {
+        $dbCode = $array[0]['code'];
+        $userID = $array[0]['ID'];
+
         echo("Verbindung war erfolgreich.");
 
-        print_r($dbCode . " " . $code);
-
         playstoryAufeins($userID, $pdo);
-    } 
-
-    else {
+    } else {
         echo("Verbindung fehlgeschlagen, bitte den Code überprüfen.");
     }
-
-    // $jsonArray = json_encode($array);
-
-    // print_r($jsonArray);
+} else {
+    echo("Datenbankabfrage fehlgeschlagen.");
 }
 
 function playstoryAufeins($ID, $pdo) {
@@ -41,5 +32,4 @@ function playstoryAufeins($ID, $pdo) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$ID]);
 }
-
-
+?>

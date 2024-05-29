@@ -1,7 +1,6 @@
 function startStory() {
     document.getElementById('status').textContent = 'Status: QR-Code gescannt. Die Story startet jetzt!';
     document.body.style.backgroundColor = 'red';
-    localStorage.setItem('playStory', '1'); // Set playStory to true
 }
 
 function detectMobile() {
@@ -37,13 +36,35 @@ function initialize() {
     // Generate a new random code and save it to localStorage
     const randomCode = generateRandomCode();
     localStorage.setItem('randomCode', randomCode);
-    document.getElementById('code').textContent = 'Ihr Code: ' + randomCode;
+    const codeElement = document.getElementById('code');
+    if (codeElement) {
+        codeElement.textContent = 'Ihr Code: ' + randomCode;
+    }
+
+    setInterval(checkPlayStoryStatus, 5000);
 }
+
+
+function checkPlayStoryStatus() {
+    fetch("https://372401-15.web.fhgr.ch/php/checkPlayStory.php")
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.playStory === '1') {
+            startStory();
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+
 
 window.onload = function() {
     initialize();
     registrieren();
     loescheCodes();
+    checkAndUpdatePlaystory();
 }
 
 
@@ -81,5 +102,20 @@ function loescheCodes() {
     .then((res) => res.json())
     .then((data) => {
         console.log(data.message);
+    });
+}
+
+
+function checkPlayStoryStatus() {
+    const code = localStorage.getItem('randomCode');
+    fetch(`https://372401-15.web.fhgr.ch/php/checkPlayStory.php?code=${code}`)
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.playStory === '1') {
+            startStory();
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
     });
 }
