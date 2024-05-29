@@ -9,9 +9,10 @@
 <body>
     <div class="container" id="mobileView">
         <h1>Geben Sie Ihren 5-stelligen Code ein</h1>
-        <form id="codeForm">
+        <form id="codeForm" onsubmit="login(event)">
             <input type="text" id="codeInput" maxlength="5" placeholder="_ _ _ _ _" required>
-            <button type="submit">Bestätigen</button>
+            <button type="submit"> Bestätigen</button>
+            <p id="nachricht"></p>
         </form>
         <p id="message">Der Code ist nur auf dem Computer unter QR-Hikikomori.ch verfügbar.</p>
     </div>
