@@ -1,6 +1,13 @@
 function startStory() {
     document.getElementById('status').textContent = 'Status: QR-Code gescannt. Die Story startet jetzt!';
-    document.body.style.backgroundColor = 'red';
+    document.body.style.backgroundColor = 'lightgreen';
+
+    var vidTicken = document.getElementById('vidTicken');
+    var vidKaputt = document.getElementById('vidKaputt');
+
+    // Ändern der Display-Eigenschaften
+    vidTicken.style.display = 'none';
+    vidKaputt.style.display = 'block';
 }
 
 function detectMobile() {
@@ -44,9 +51,9 @@ function initialize() {
     setInterval(checkPlayStoryStatus, 5000);
 }
 
-
 function checkPlayStoryStatus() {
-    fetch("https://372401-15.web.fhgr.ch/php/checkPlayStory.php")
+    const code = localStorage.getItem('randomCode');
+    fetch(`https://hikaru.ch/php/checkPlayStory.php?code=${code}`)
     .then((res) => res.json())
     .then((data) => {
         if (data.playStory === '1') {
@@ -58,15 +65,11 @@ function checkPlayStoryStatus() {
     });
 }
 
-
-
 window.onload = function() {
     initialize();
     registrieren();
     loescheCodes();
-    checkAndUpdatePlaystory();
 }
-
 
 function registrieren() {
     let code = localStorage.getItem('randomCode');
@@ -84,7 +87,7 @@ function beispielFetchFormulardaten(code, playstory, timestamp) {
     formData.append('playstory', playstory);
     formData.append('timestamp', timestamp);
 
-    fetch("https://372401-15.web.fhgr.ch/php/registrieren.php", {
+    fetch("https://hikaru.ch/php/registrieren.php", {
         body: formData,
         method: "post",
     })
@@ -96,26 +99,10 @@ function beispielFetchFormulardaten(code, playstory, timestamp) {
     });
 }
 
-
 function loescheCodes() {
-    fetch("https://372401-15.web.fhgr.ch/php/loeschCode.php")
+    fetch("https://hikaru.ch/php/loeschCode.php")
     .then((res) => res.json())
     .then((data) => {
         console.log(data.message);
-    });
-}
-
-
-function checkPlayStoryStatus() {
-    const code = localStorage.getItem('randomCode');
-    fetch(`https://372401-15.web.fhgr.ch/php/checkPlayStory.php?code=${code}`)
-    .then((res) => res.json())
-    .then((data) => {
-        if (data.playStory === '1') {
-            startStory();
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
     });
 }

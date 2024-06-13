@@ -10,7 +10,7 @@ function login(event) {
     let formData = new FormData();
     formData.append('code', code);
 
-    fetch("https://372401-15.web.fhgr.ch/php/login.php", {
+    fetch("https://hikaru.ch/php/login.php", {
         body: formData,
         method: "post",
     })
