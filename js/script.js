@@ -17,6 +17,7 @@ function startStory() {
     }
 }
 
+
 function detectMobile() {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
@@ -28,6 +29,52 @@ function detectMobile() {
         `;
     }
 }
+
+const coords = { x: 0, y: 0 };
+const circles = document.querySelectorAll(".circle");
+
+
+circles.forEach(function (circle) {
+  circle.x = 0;
+  circle.y = 0;
+});
+
+window.addEventListener("mousemove", function(e){
+  coords.x = e.clientX;
+  coords.y = e.clientY;
+  
+});
+
+function animateCircles() {
+  
+  let x = coords.x;
+  let y = coords.y;
+  
+  circles.forEach(function (circle, index) {
+    if (index === 0) {
+      // Specific handling for the outer circle
+      circle.style.left = x - 15 + "px"; // Adjusted for border
+      circle.style.top = y - 15 + "px";  // Adjusted for border
+    } else {
+      circle.style.left = x - 12 + "px";
+      circle.style.top = y - 12 + "px";
+    }
+    
+    circle.style.scale = (circles.length - index) / circles.length;
+    
+    circle.x = x;
+    circle.y = y;
+
+    const nextCircle = circles[index + 1] || circles[0];
+    x += (nextCircle.x - x) * 0.3;
+    y += (nextCircle.y - y) * 0.3;
+  });
+ 
+  requestAnimationFrame(animateCircles);
+}
+
+animateCircles();
+
 
 function generateRandomCode() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -52,7 +99,7 @@ function initialize() {
     localStorage.setItem('randomCode', randomCode);
     const codeElement = document.getElementById('code');
     if (codeElement) {
-        codeElement.textContent = 'Ihr Code: ' + randomCode;
+        codeElement.textContent = '' + randomCode;
     }
 
     setInterval(checkPlayStoryStatus, 5000);
@@ -72,12 +119,29 @@ function checkPlayStoryStatus() {
     .then((res) => res.json())
     .then((data) => {
         if (data.playStory === '1') {
-            startStory();
+            window.location.href = 'pages/home.html';
         }
     })
     .catch((error) => {
         console.error('Error:', error);
     });
+}
+
+function toggleMute() {
+    var muted = document.getElementById('muted');
+    var unmuted = document.getElementById('unmuted');
+    var audio = document.getElementById('autoPlayAudio');
+
+
+    if (muted.style.display === 'none') {
+        muted.style.display = 'block';
+        unmuted.style.display = 'none';
+        audio.pause();
+    } else {
+        muted.style.display = 'none';
+        unmuted.style.display = 'block';
+        audio.play();
+    }
 }
 
 function generateRandomHash(length) {
@@ -239,6 +303,8 @@ window.onload = function() {
     initialize();
     registrieren();
     loescheCodes();
+    document.getElementById('muted').addEventListener('click', toggleMute);
+    document.getElementById('unmuted').addEventListener('click', toggleMute);
 }
 
 function registrieren() {

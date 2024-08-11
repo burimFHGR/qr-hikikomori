@@ -1,9 +1,38 @@
+@font-face {
+    font-family: 'HikaruSchrift';
+    src: url('/fonts/NikkyouSans.ttf');
+    src: url('/fonts/NikkyouSans.ttf') format('embedded-opentype'),
+         url('/fonts/NikkyouSans.woff2') format('woff2'), 
+         url('/fonts/NikkyouSans.woff') format('woff'), 
+         url('/fonts/NikkyouSans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#outter { border: 3px solid black;
+    background-color: white;
+    }
+    
+    .circle {
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      position: fixed; 
+      top: 0;
+      left: 0;
+      background-color: white;
+      pointer-events: none;
+      z-index: 99999999;
+    }
+
+    
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
     padding: 0;
     overflow: hidden;
+    cursor: none;
 }
 
 .video-background {
@@ -14,7 +43,6 @@ body {
     height: 100%;
     z-index: -1;
     overflow: hidden;
-    opacity: 0.4;
 }
 
 video {
@@ -31,7 +59,7 @@ video {
 .content {
     position: relative;
     z-index: 1;
-    margin-top: 50px;
+    margin-top: -5vh;
 }
 
 img {
@@ -39,6 +67,82 @@ img {
     height: auto;
     margin: 20px 0;
 }
+
+h1 {
+    color: white;
+    font-family: 'HikaruSchrift', sans-serif;
+    font-size: 8vw;
+}
+
+#instruction {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+#code {
+    position: fixed;
+    top: 57%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform: skewX(-1deg);
+    transform: skewY(-8deg);
+    background: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: white;
+    font-weight: 800;
+    font-size: 1.2vw;
+    
+}
+
+.halsbandtext {
+    position: fixed;
+    top: 56.5%;
+    left: 43%;
+    transform: translate(-50%, -50%);
+    transform: skewX(5deg);
+    transform: skewY(10deg);
+    background: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: white;
+    font-weight: 800;
+    font-size: 1.2vw;
+}
+
+#muted, #unmuted {
+    position: fixed;
+    top: 0%;
+    left: 0px;
+    padding: 1vh 1vh;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    width: 10vh;
+    height: 5vh; 
+}
+
+#unmuted {
+    display: none;
+}
+
+.bottom-instruction {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1); 
+    margin: 0;
+}
+
 
 #status {
     font-size: 18px;

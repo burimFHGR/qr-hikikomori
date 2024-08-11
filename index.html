@@ -3,15 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR-Code Scannen</title>
+    <title>Hikikomori</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+    <div id="outter" class="circle"></div>
+    <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+     <div class="circle"></div>
+    <img id="muted" src="img/muted.svg" alt="muted">
+    <img id="unmuted" src="img/unmuted.svg" alt="unmuted">
+    <audio id="autoPlayAudio" autoplay loop>
+        <source src="/music/tick_tack.mp3" type="audio/mpeg"> </audio>
+
     <div class="video-background">
         <video id="vidTicken" autoplay loop muted style="display:block;">
             <source src="/vids/5sek.mov" type="video/mp4">
             Ihr Browser unterstützt das Video-Tag nicht.
         </video>
+
         <video id="vidKaputt" autoplay muted style="display:none;">
             <source src="/vids/connected.mp4" type="video/mp4">
             Ihr Browser unterstützt das Video-Tag nicht.
@@ -154,11 +180,11 @@
           </div>
     </div>
     <div class="content">
-        <h1>QR-Code Scannen</h1>
-        <p>QR-Code scannen und Code auf Ihrem Handy eingeben, um die Story zu starten.</p>
-        <img id="test" src="img/qr/QR-play-animation.png" alt="QR-Code">
-        <p id="status">Status: Warten auf Scan...</p>
-        <p id="code">Ihr Code: Wird generiert...</p>
+        <h1>Hikikomori</h1>
+        <p class="bottom-instruction">QR-Code scannen und Code auf Ihrem Handy eingeben, um die Story zu starten.</p>
+        <!-- <p id="status">Status: Warten auf Scan...</p> -->
+        <p id="code">Code: Wird generiert...</p>
+        <p class="halsbandtext">Code:</p>
         <div id="mobile-warning" style="display:none;">
             <p>Bitte besuchen Sie <a href="http://qr-hikikomori.ch">qr-hikikomori.ch</a> auf einem Computer, um fortzufahren.</p>
         </div>

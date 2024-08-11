@@ -18,7 +18,7 @@ $erfolg = $stmt->execute(array('Code' => $code, 'Playstory' => $playstory, 'Time
 
 if ($erfolg) {
 
-    print_r('Registrierung erfolgreich.');
+    // print_r('Registrierung erfolgreich.');
 } else {
 
     print_r($erfolg);
