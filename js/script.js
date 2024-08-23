@@ -21,10 +21,17 @@ function startStory() {
 function detectMobile() {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     if (isMobile) {
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "white";
+        document.body.style.margin = "10vh";
+        document.body.style.padding = "0";
+        document.body.style.height = "100vh";
+        document.body.style.display = "flex";
         document.body.innerHTML = `
-            <div style="text-align: center; margin-top: 50px;">
-                <h1>Bitte besuchen Sie diese Seite auf einem Computer</h1>
-                <p>Um fortzufahren, gehen Sie zu <a href="http://qr-hikikomori.ch">qr-hikikomori.ch</a> auf Ihrem Computer.</p>
+
+            <div style="text-align: center; margin-top: 50px; background-color: black; color: white;">
+                <h1>Bitte besuche diese Seite auf einem Computer</h1> <br><br><br><br><br><br><br><br><br><br>
+                <h1>hikaru.ch</h1>
             </div>
         `;
     }
@@ -113,13 +120,23 @@ $(function() {
     });
 });
 
+let videoPlayed = false;
+
 function checkPlayStoryStatus() {
     const code = localStorage.getItem('randomCode');
     fetch(`https://hikaru.ch/php/checkPlayStory.php?code=${code}`)
     .then((res) => res.json())
     .then((data) => {
-        if (data.playStory === '1') {
-            window.location.href = 'pages/home.html';
+        if (data.playStory === '1' && !videoPlayed) {
+            videoPlayed = true;
+            const breakVideo = document.createElement('video');
+            breakVideo.src = '/vids/break.mp4';
+            breakVideo.autoplay = true;
+            breakVideo.onended = () => {
+                window.location.href = 'pages/home.html';
+            };
+            document.body.appendChild(breakVideo);
+            breakVideo.play();
         }
     })
     .catch((error) => {
@@ -341,4 +358,15 @@ function loescheCodes() {
     .then((data) => {
         console.log(data.message);
     });
+}
+
+window.onload = function() {
+    initialize();
+    registrieren();
+    loescheCodes();
+    document.getElementById('muted').addEventListener('click', toggleMute);
+    document.getElementById('unmuted').addEventListener('click', toggleMute);
+
+    // Preloader ausblenden
+    document.getElementById('preloader').style.display = 'none';
 }

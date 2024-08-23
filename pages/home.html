@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -9,40 +8,56 @@
 </head>
 
 <body>
-    <svg id="demo" xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="1600" height="900" viewBox="0 0 1600 900">
-        <defs>
-        <radialGradient id="maskGradient">
-          <stop offset="50%" stop-color="#fff"/>
-          <stop offset="100%" stop-color="#000"/>
-        </radialGradient>
-        <mask id="theMask">
-         <circle id="masker" r="150" fill="url(#maskGradient)" cx="800" cy="450" />
-        </mask>
-        </defs> 
-            <image id="lines" xlink:href="https://hikaru.ch/img/Hintergrund-neutral.png" x="0" y="0" width="1600" height="900" />
-            <g id="maskReveal" mask="url(#theMask)" > 
-            <image id="regular" xlink:href="https://hikaru.ch/img/Hintergrund-scan.png" x="0" y="0" width="1600" height="900" />
-            </g>
-          <circle id="ring" r="20" fill="none" stroke="#dc143c" stroke-width="2" cx="800" cy="450" />
-          <circle id="dot" r="4" fill="#dc143c" cx="800" cy="450" />
-      </svg>
-      
-      <div id="instructions">
-        <!-- <svg id="dial" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"> -->
-        <path id="progressRing" d="M50,10A40,40,0,1,1,10,50,40,40,0,0,1,50,10Z" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="6"/>
-        <circle r="43" fill="none" stroke="#fff" cx="50" cy="50" stroke-width="2" opacity="0.5" />
-         <circle r="37" fill="none" stroke="#fff" cx="50" cy="50" stroke-width="2" opacity="0.5"/>
-         <!-- <text transform="translate(55 56)" text-anchor="start" font-size="20" fill="#fff">%</text>
-         <text id="counter" transform="translate(55 56)" text-anchor="end" font-size="20" fill="#fff">0</text> -->
-        </svg>
-        <p> 1. Scanne einen QR-Code.     </br></br>  
-            2. Erledige die Aufgabe, zu der du weitergeleitet wirst.  </br></br>
-            3. Schaue in deinem Journal nach.        </p>
-      </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/TimelineMax.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/TweenMax.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
-<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/DrawSVGPlugin3.min.js"></script>
-<script src="/js/home.js"></script>
+  <div class="popup-overlay" id="popupOverlay"></div>
+
+  <div class="popup" id="popup">
+      <img id="popupImage" src="" alt="Popup Bild">
+  </div>
+  
+  <svg id="demo" xmlns="http://www.w3.org/2000/svg" x="0" y="0" width="1600" height="900" viewBox="0 0 1600 900">
+      <defs>
+          <radialGradient id="maskGradient">
+              <stop offset="50%" stop-color="#fff"/>
+              <stop offset="100%" stop-color="#000"/>
+          </radialGradient>
+          <mask id="theMask">
+              <circle id="masker" r="150" fill="url(#maskGradient)" cx="800" cy="450" />
+          </mask>
+      </defs>
+      <!-- Hintergrund-neutral.png -->
+      <image id="lines" xlink:href="https://hikaru.ch/img/Hintergrund-neutral.png" x="0" y="0" width="1600" height="900" />
+  
+      <!-- Maske auf Hintergrund-scan.png anwenden -->
+      <g id="maskReveal" mask="url(#theMask)"> 
+          <image id="regular" xlink:href="https://hikaru.ch/img/Hintergrund-scan.png" x="0" y="0" width="1600" height="900" />
+      </g>
+  
+      <circle id="ring" r="20" fill="none" stroke="#dc143c" stroke-width="2" cx="800" cy="450" />
+      <circle id="dot" r="4" fill="#dc143c" cx="800" cy="450" />
+  
+      <!-- Interaktive Bereiche -->
+      <polygon points="117,627,126,682,103,761,119,875,185,861,185,760,163,682,163,627,141,624,131,627" fill="rgba(255,0,0,0.3)" stroke="red" stroke-width="2" onclick="showPopup('/img/qr/Kendama_QR.png')" />
+      <rect x="243" y="407" width="339" height="280" fill="rgba(255,0,0,0.3)" stroke="orange" stroke-width="2" onclick="showPopup('/img/qr/Tsundoku_QR.png')" />
+      <rect x="1147" y="571" width="128" height="195" fill="rgba(255,0,0,0.3)" stroke="yellow" stroke-width="2" onclick="showPopup('/img/qr/Yarikomi_QR.gif')" />
+      <rect x="447" y="171" width="128" height="195" fill="rgba(255,0,0,0.3)"  stroke="green" stroke-width="2" onclick="showPopup('/img/qr/Zappingu_QR.gif')" />
+      <rect x="743" y="107" width="339" height="280" fill="rgba(255,0,0,0.3)" stroke="blue" stroke-width="2" onclick="window.location.href='/pages/hikikomori.html';" />
+      <!-- <polygon points="1489,429,1694,712" fill="transparent" stroke="none" onclick="showPopup('https://via.placeholder.com/400x300?text=Bild4')" /> -->
+
+  </svg>
+  
+
+    <div id="instructions">
+        <p>1. Scanne einen QR-Code.</br></br>  
+           2. Erledige die Aufgabe, zu der du weitergeleitet wirst.</br></br>
+           3. Schaue in deinem Journal nach.</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/TimelineMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <script src="/js/clipping.js"></script>
+    <script type="text/javascript" src="/js/vanilla-tilt.js"></script>
+    <script src="/js/home.js"></script>
 </body>
+</html>

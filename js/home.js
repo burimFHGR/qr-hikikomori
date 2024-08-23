@@ -53,3 +53,25 @@ window.addEventListener("mousemove", mouseMove);
 
 newSize();
 window.addEventListener("resize", newSize);
+
+
+function showPopup(imageSrc) {
+  // Setze das Bild im Popup
+  document.getElementById('popupImage').src = imageSrc;
+
+  // Zeige das Popup an
+  document.getElementById('popup').style.display = 'block';
+  document.getElementById('popupOverlay').style.display = 'block';
+
+  // Animieren des Popups (z.B. mit GSAP)
+  gsap.fromTo("#popup", { opacity: 0 }, { opacity: 1, duration: 0.5 });
+}
+
+// Event-Listener, um das Popup zu schließen, wenn man auf das Overlay klickt
+document.getElementById('popupOverlay').addEventListener('click', function() {
+  gsap.to("#popup", { opacity: 0, duration: 0.5, onComplete: function() {
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('popupOverlay').style.display = 'none';
+  }});
+});
+

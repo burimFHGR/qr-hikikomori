@@ -19,5 +19,11 @@ function login(event) {
     })
     .then((data) => {
         document.querySelector('#nachricht').innerHTML = data;
+
+        if (data.includes("Verbindung war erfolgreich.")) {
+            setTimeout(() => {
+                window.location.href = "anleitung.html";
+            }, 1500); // 15 Sekunden Verzögerung
+        }
     });
 }

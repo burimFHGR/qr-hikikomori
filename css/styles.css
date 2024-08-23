@@ -9,6 +9,36 @@
     font-style: normal;
 }
 
+#preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#preloader-content {
+    text-align: center;
+}
+
+#preloader img {
+    width: 100%;
+
+    margin-bottom: 10px;
+}
+
+#preloader p {
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    color: #333;
+    margin: 0;
+}
+
 #outter { border: 3px solid black;
     background-color: white;
     }

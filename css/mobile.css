@@ -1,6 +1,8 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background-image: url('/img/background.png');
+    background-size: cover;
+    background-position: center;
     margin: 0;
     padding: 0;
     display: flex;
@@ -42,14 +44,15 @@ button {
     padding: 10px;
     font-size: 1em;
     color: white;
-    background-color: #007bff;
+    background-color: #ff0000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
+
+button:active {
+    background-color: #000;
 }
 
 #message {

@@ -21,10 +21,10 @@ if ($erfolg) {
 
         playstoryAufeins($userID, $pdo);
     } else {
-        echo("Verbindung fehlgeschlagen, bitte den Code überprüfen.");
+        echo("Verbindung fehlgeschlagen, bitte den </br> Code überprüfen.");
     }
 } else {
-    echo("Datenbankabfrage fehlgeschlagen.");
+    echo("Datenbankabfrage fehlgeschlagen. Bitte Desktop-Seite neu laden und erneut mit neuem Code versuchen.");
 }
 
 function playstoryAufeins($ID, $pdo) {
