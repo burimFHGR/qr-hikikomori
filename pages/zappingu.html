@@ -7,7 +7,27 @@
     <title>Zappingu</title>
 </head>
 <body>
-<h1>Zappingu</h1>
+    <div class="container">
+      
+      <div class="tv-screen">
+        <div class="channel-display">
+          <span id="channel-number" class="glitch">Channel 137</span>
+        </div>
+        <div class="static"></div>
+        <div class="video-container">
+          <iframe id="video-frame" width="1560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <div id="loader" class="loader"></div>
+        </div>
+      </div>
+    
+      <div class="controls">
+        <button onclick="changeChannel('prev')" style="width: 25%";>-</button>
+        <button onclick="changeChannel('random')">Zufälliger Kanal</button>
+        <button onclick="changeChannel('next')" style="width: 25%";>+</button>
+
+        
+      </div>
+    </div>
     <script src="/js/zappingu.js"></script>
 </body>
 </html>
