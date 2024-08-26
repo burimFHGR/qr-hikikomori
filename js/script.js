@@ -122,6 +122,14 @@ $(function() {
 
 let videoPlayed = false;
 
+function muteAllMedia() {
+    // Mute alle Audio-Elemente
+    const audioElements = document.querySelectorAll('audio');
+    audioElements.forEach(audio => {
+        audio.muted = true;
+    });
+}
+
 function checkPlayStoryStatus() {
     const code = localStorage.getItem('randomCode');
     fetch(`https://hikaru.ch/php/checkPlayStory.php?code=${code}`)
@@ -129,6 +137,9 @@ function checkPlayStoryStatus() {
     .then((data) => {
         if (data.playStory === '1' && !videoPlayed) {
             videoPlayed = true;
+
+            muteAllMedia();
+
             const breakVideo = document.createElement('video');
             breakVideo.src = '/vids/break.mp4';
             breakVideo.autoplay = true;
@@ -370,3 +381,134 @@ window.onload = function() {
     // Preloader ausblenden
     document.getElementById('preloader').style.display = 'none';
 }
+
+function createHighlightInstruction() {
+    // Erstelle das Overlay-Element
+    const overlay = document.createElement('div');
+    overlay.id = 'highlight-overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    overlay.style.color = 'white';
+    overlay.style.display = 'flex';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.zIndex = '9998';
+    overlay.style.textAlign = 'left';
+    overlay.style.padding = '20px';
+    overlay.style.fontWeight = '800';
+    overlay.style.fontSize = '2.2vw';
+    overlay.innerHTML = `
+        <div>
+            <button id="confirm-button" style="position:fixed; top: 79.5%; left: 60%; padding: 1% 3%; font-weight:bold; font-size: 1.2vw; cursor: pointer; background: #f3f3f3; border-radius: 11px; box-shadow: 0 3px #444444; color: #000000; display: inline-block; text-align: center;">
+                Alles klar
+            </button>        
+        </div>
+    `;
+
+    const textInstruction = document.createElement('div');
+    textInstruction.style.position = 'fixed';
+    textInstruction.style.top = '82%'; // Positionierung anpassen
+    textInstruction.style.left = '25%'; // Positionierung anpassen
+    textInstruction.style.transform = 'translate(-50%, -50%)';
+    textInstruction.style.color = 'white';
+    textInstruction.style.fontSize = '1.8vw';
+    textInstruction.style.fontWeight = 'bold';
+    textInstruction.style.zIndex = '10000';
+    textInstruction.innerText = '1) Scanne den QR-Code';
+
+
+    const textInstruction2 = document.createElement('div');
+    textInstruction2.style.position = 'fixed';
+    textInstruction2.style.top = '55%'; // Positionierung anpassen
+    textInstruction2.style.left = '67%'; // Positionierung anpassen
+    textInstruction2.style.transform = 'translate(-50%, -50%)';
+    textInstruction2.style.color = 'white';
+    textInstruction2.style.fontSize = '1.8vw';
+    textInstruction2.style.fontWeight = 'bold';
+    textInstruction2.style.zIndex = '10000';
+    textInstruction2.innerHTML = '2) Gib den Code <br> auf deinem Handy ein'; 
+
+
+
+    const highlight = document.createElement('div');
+    highlight.style.position = 'fixed'; // Element fest positionieren
+    highlight.style.width = '200px'; // Größe des hervorgehobenen Bereichs anpassen
+    highlight.style.height = '200px'; // Größe des hervorgehobenen Bereichs anpassen
+    highlight.style.border = '4px solid red'; // Umrandung für den hervorgehobenen Bereich
+    highlight.style.transform = 'translate(-50%, -50%)';
+    highlight.style.borderRadius = '10px';
+    highlight.style.boxShadow = '0 0 15px rgba(255, 255, 255, 0.7)';
+    highlight.style.top = '56.4%'; // Positionierung anpassen
+    highlight.style.left = '43%'; // Positionierung anpassen
+    highlight.style.pointerEvents = 'none';
+
+
+
+    const highlight2 = document.createElement('div');
+    highlight2.style.position = 'fixed'; // Element fest positionieren
+    highlight2.style.width = '120px'; // Größe des hervorgehobenen Bereichs anpassen
+    highlight2.style.height = '50px'; // Größe des hervorgehobenen Bereichs anpassen
+    highlight2.style.border = '4px solid white'; // Umrandung für den hervorgehobenen Bereich
+    highlight2.style.transform = 'translate(-50%, -50%)';
+    highlight2.style.borderRadius = '10px';
+    highlight2.style.boxShadow = '0 0 15px rgba(255, 255, 255, 0.7)';
+    highlight2.style.top = '58.4%'; // Positionierung anpassen
+    highlight2.style.left = '52%'; // Positionierung anpassen
+    highlight2.style.pointerEvents = 'none';
+
+    const arrow = document.createElement('div');
+    highlight.style.position = 'fixed'; // Element fest positionieren
+    highlight.style.width = '12%'; // Größe des hervorgehobenen Bereichs anpassen
+    highlight.style.height = '20%'; // Größe des hervorgehobenen Bereichs anpassen
+    highlight.style.border = '4px solid white'; // Umrandung für den hervorgehobenen Bereich
+    highlight.style.transform = 'translate(-50%, -50%) scale(1)'; // Skalierung auf 1, um die Größe beizubehalten
+    highlight.style.borderRadius = '10px';
+    highlight.style.boxShadow = '0 0 15px rgba(255, 255, 255, 0.7)';
+    highlight.style.top = '76%'; // Positionierung anpassen
+    highlight.style.left = '46%'; // Positionierung anpassen
+    highlight.style.pointerEvents = 'none';
+    highlight.style.transformOrigin = 'center'; // Skalierungsursprung in der Mitte des Elements
+    highlight.style.zIndex = '9999';
+
+    
+    const arrow2 = document.createElement('div');
+    highlight2.style.position = 'fixed'; // Element fest positionieren
+    highlight2.style.width = '8%'; // Größe des hervorgehobenen Bereichs anpassen
+    highlight2.style.height = '6%'; // Größe des hervorgehobenen Bereichs anpassen
+    highlight2.style.border = '4px solid white'; // Umrandung für den hervorgehobenen Bereich
+    highlight2.style.transform = 'translate(-50%, -50%) scale(1)'; // Skalierung auf 1, um die Größe beizubehalten
+    highlight2.style.borderRadius = '10px';
+    highlight2.style.boxShadow = '0 0 15px rgba(255, 255, 255, 0.7)';
+    highlight2.style.top = '58.4%%'; // Positionierung anpassen
+    highlight2.style.left = '52%'; // Positionierung anpassen
+    highlight2.style.pointerEvents = 'none';
+    highlight2.style.transformOrigin = 'center'; // Skalierungsursprung in der Mitte des Elements
+    highlight2.style.zIndex = '9999';
+    
+    // Füge das Overlay zur Seite hinzu
+    document.body.appendChild(overlay);
+    document.body.appendChild(highlight);
+    document.body.appendChild(highlight2);
+    document.body.appendChild(arrow);
+    document.body.appendChild(arrow2);  
+    document.body.appendChild(textInstruction);
+    document.body.appendChild(textInstruction2);
+    
+    // Füge Event-Listener zum Bestätigen-Button hinzu
+    document.getElementById('confirm-button').addEventListener('click', () => {
+        document.body.removeChild(overlay);
+        document.body.removeChild(highlight);
+        document.body.removeChild(highlight2);
+        document.body.removeChild(arrow);  
+        document.body.removeChild(arrow2);
+        document.body.removeChild(textInstruction);
+        document.body.removeChild(textInstruction2);
+    });
+}
+
+// Rufe die Funktion zum Erstellen der Highlight-Anweisung auf
+createHighlightInstruction();

@@ -5,8 +5,9 @@ Mein Projekt zielte darauf ab, eine Desktop-Webseite zu realisieren und zu gesta
 Zu den integrierten Projekten gehören: 
 - filterbare Bildergalerie (Quelle: https://www.codingnepalweb.com/filterable-image-gallery-javascript/) 
 - Snake-Game (Quelle: https://github.com/deepmeena70/snake-game-canvas-javascript)
+- Tilt Effekt (https://micku7zu.github.io/vanilla-tilt.js/)
 
 # Entwicklungshilfen
-Die Coaching-Ratschläge von Benjamin Hanniman waren sehr hilfreich. Unter anderem konnte er mir einen Tipp sowie einen Codevorschlag (siehe: https://chat.openai.com/share/51738521-6c49-4177-b620-22fd838903bd) geben, wie man mithilfe des Local Storage einrichten kann, dass wenn die Website zum ersten Mal geöffnet wird, die Weiterleitung zuerst auf eine Unterseite erfolgt, anstatt auf index.html.
+Diese Tutorial-Reihe der Fachhochschule Graubünden war äussert wertvoll und dund hat entscheidend zur erfolgreichen Integration des FTP-Servers beigetragen. (https://www.youtube.com/watch?v=L8OoeIm2GqQ&list=UULFaSDafHu3CRoeKKTM3h-x0A&index=35)
 
 Während des Entwicklungsprozesses habe ich auf KI-Tools wie ChatGPT und CoPilot zurückgegriffen, um zusätzliche Ideen und Codevorschläge zu erhalten. Diese Unterstützung erwies sich zudem äusserst hilfreich beim Debugging und ermöglichte eine effiziente sowie kreative Umsetzung der Webseite.

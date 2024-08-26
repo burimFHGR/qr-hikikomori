@@ -1,3 +1,39 @@
+const socket = new WebSocket('ws://localhost:8080');
+
+socket.addEventListener('open', function (event) {
+    console.log('Connected to WebSocket server');
+});
+
+socket.addEventListener('message', function (event) {
+    // Convert the Blob to a text string
+    event.data.text().then(function (text) {
+        console.log('Message from server: ', text);
+
+        // Now you can handle the message as text
+        if (text === 'changeChannel:prev') {
+            console.log('Changing to previous channel');
+            changeChannel('prev');
+        } else if (text === 'changeChannel:random') {
+            console.log('Changing to random channel');
+            changeChannel('random');
+        } else if (text === 'changeChannel:next') {
+            console.log('Changing to next channel');
+            changeChannel('next');
+        } else {
+            console.log('Unknown message received:', text);
+        }
+    });
+});
+
+function sendMessage(message) {
+    console.log('Sending message:', message);
+    socket.send(message);
+}
+
+function handleChannelChange(direction) {
+    changeChannel(direction);
+    sendMessage(`changeChannel:${direction}`);
+}
 
 const weirdVideoIds = {
     100: 'uaDQB8lOlTk',  //     League
@@ -55,7 +91,6 @@ function getRandomStartTime(videoDuration) {
 const videoDuration = 300;
 
 function changeChannel(direction) {
-    
     if (direction === 'next') {
         currentChannel++;
     } else if (direction === 'prev') {
@@ -78,8 +113,16 @@ function changeChannel(direction) {
     staticNoiseAudio.play();
     
     document.getElementById('video-frame').style.opacity = '0';
-    
-    document.getElementById('video-frame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${videoId}&start=${randomStartTime}`;
+
+    // Check if the screen width is 767px or less and adjust the mute parameter
+    let muteParam = '';
+    if (window.matchMedia('(max-width: 767px)').matches) {
+        muteParam = '&mute=1';
+    } else if (window.matchMedia('(min-width: 768px)').matches) {
+        muteParam = '&mute=0';
+    }
+
+    document.getElementById('video-frame').src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${videoId}&start=${randomStartTime}${muteParam}`;
 
     document.getElementById('video-frame').onload = function() {
         setTimeout(() => {
@@ -91,6 +134,7 @@ function changeChannel(direction) {
     };
     
     applyGlitchEffect();
+
 }
 
 function applyGlitchEffect() {
@@ -102,3 +146,34 @@ function applyGlitchEffect() {
 }
 
 changeChannel('random');
+
+
+function muteAllAudio() {
+    // Mute the static noise audio
+    staticNoiseAudio.volume = 0;
+
+    // Mute the YouTube video if it's playing
+    const videoFrame = document.getElementById('video-frame');
+    videoFrame.src += "&mute=1";
+
+    // Mute any other audio elements on the page
+    const allAudioElements = document.querySelectorAll('audio, video');
+    allAudioElements.forEach(element => {
+        element.muted = true;
+    });
+
+    console.log('All audio has been muted');
+}
+
+// Call this function to mute all audio on the page
+
+function checkScreenWidthAndMute() {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+        muteAllAudio();
+    }
+}
+
+// Initial check
+checkScreenWidthAndMute();
+
+window.addEventListener('resize', checkScreenWidthAndMute);
