@@ -1,3 +1,5 @@
+updateZappingu();
+
 const socket = new WebSocket('ws://localhost:8080');
 
 socket.addEventListener('open', function (event) {
@@ -24,6 +26,28 @@ socket.addEventListener('message', function (event) {
         }
     });
 });
+
+function updateZappingu() {
+
+    let code = localStorage.getItem("randomCode");
+    
+    let formData = new FormData();
+    formData.append('code', code);
+  
+    fetch("https://hikaru.ch/php/zappinguRedirect.php",
+        {
+            body: formData,
+            method: "post",
+            headers: {
+            }
+          })
+          .then((res) => {
+              // Handle the response if needed
+          })
+          .catch((error) => {
+              console.error('Error:', error);
+          });
+  }
 
 function sendMessage(message) {
     console.log('Sending message:', message);

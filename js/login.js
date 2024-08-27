@@ -1,5 +1,18 @@
 console.log("Hallo");
 
+document.getElementById("codeForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Verhindert das Standard-Formularverhalten
+
+    // Wert des Eingabefeldes abrufen
+    var code = document.getElementById("codeInput").value;
+
+    // Wert im Local Storage speichern
+    localStorage.setItem("randomCode", code);
+
+    // Optional: Nachricht anzeigen
+    document.getElementById("nachricht").innerHTML = "Code wurde gespeichert!";
+});
+
 function login(event) {
     event.preventDefault(); // Verhindert das Standardverhalten des Formulars
 
@@ -27,3 +40,5 @@ function login(event) {
         }
     });
 }
+
+

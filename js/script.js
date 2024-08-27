@@ -1,3 +1,14 @@
+    checkLink();
+
+// Preloader nur beim 1. auf Website, dann nicht mehr
+function checkLink() {
+    if (localStorage.getItem('playStory') === '1') {
+        window.location.href = 'pages/home.html';
+    } else {
+
+    }
+}
+
 function startStory() {
     document.getElementById('status').textContent = 'Status: QR-Code gescannt. Die Story startet jetzt!';
     document.body.style.backgroundColor = 'lightgreen';
@@ -139,6 +150,7 @@ function checkPlayStoryStatus() {
             videoPlayed = true;
 
             muteAllMedia();
+            localStorage.setItem('playStory', '1'); // Set playStory to true
 
             const breakVideo = document.createElement('video');
             breakVideo.src = '/vids/break.mp4';

@@ -1,4 +1,209 @@
 console.clear();
+initialize();
+setGamesZero();
+
+function initialize() {
+  // Check if playStory exists in localStorage
+  if (localStorage.getItem('playKendama')){
+    localStorage.setItem('playKendama', '0');
+     } else {
+      // Get the value of playStory from localStorage
+    if  (!localStorage.getItem('playKendama')) {
+      localStorage.setItem('playKendama', '0');
+    }
+  }
+
+if (localStorage.getItem('playHikikomori')){
+  localStorage.setItem('playHikikomori', '0');
+   } else {
+    // Get the value of playStory from localStorage
+  if  (!localStorage.getItem('playHikikomori')) {
+    localStorage.setItem('playHikikomori', '0');
+  }
+}
+
+if (localStorage.getItem('playTsundoku')){
+  localStorage.setItem('playTsundoku', '0');
+   } else {
+    // Get the value of playStory from localStorage
+  if  (!localStorage.getItem('playTsundoku')) {
+    localStorage.setItem('playTsundoku', '0');
+  }
+}
+
+if (localStorage.getItem('playYarikomi')){
+  localStorage.setItem('playYarikomi', '0');
+   } else {
+    // Get the value of playStory from localStorage
+  if  (!localStorage.getItem('playYarikomi')) {
+    localStorage.setItem('playYarikomi', '0');
+  }
+}
+
+if (localStorage.getItem('playZappingu')){
+  localStorage.setItem('playZappingu', '0');
+   } else {
+    // Get the value of playStory from localStorage
+  if  (!localStorage.getItem('playZappingu')) {
+    localStorage.setItem('playZappingu', '0');
+  }
+}
+}
+
+function redirections() {
+  // Redirect to the respective page
+  if (localStorage.getItem('playKendama') == '1') {
+    window.location.href = 'kendama.html';
+  } else if (localStorage.getItem('playHikikomori') == '1') {
+    window.location.href = 'hikikomori.html';
+  } else if (localStorage.getItem('playTsundoku') == '1') {
+    window.location.href = 'tsundoku.html';
+  } else if (localStorage.getItem('playYarikomi') == '1') {
+    window.location.href = 'yarikomi.html';
+  } else if (localStorage.getItem('playZappingu') == '1') {
+    window.location.href = 'zappingu.html';
+  }
+}
+
+// Check every 5 seconds
+setInterval(redirections, 5000);
+
+
+
+function holeGames() {
+  let code = localStorage.getItem('randomCode');
+  let formData = new FormData();
+  formData.append('code', code);
+
+  fetch("https://hikaru.ch/php/holeGames.php",
+      {
+          body: formData,
+          method: "post",
+          headers: {
+          }
+        })
+.then((res) => {
+    console.log("Games wurden geladen.");
+    console.log("Response Headers:", res.headers);
+    // localStorage.setItem('playZappingu', '1');
+
+
+    return res.json();
+})
+.then((json) => {
+    console.log("JSON Data:", json);
+    if ( json[0].gzappingu === "1") {
+      // localStorage-Eintrag setzen
+      localStorage.setItem('playZappingu', '1');
+      console.log('localStorage wurde aktualisiert: playZappingu = 1');
+  } else {
+      console.log('gzappingu ist nicht "1", kein Update erforderlich');
+  }
+
+})
+.catch((error) => {
+    console.error('Error:', error);
+});
+}
+
+setInterval(holeGames, 5000);
+
+
+
+
+//MAYBE LATER
+// function checkGameZappingu() {
+//   const code = localStorage.getItem('randomCode');
+//   fetch(`https://hikaru.ch/php/checkPlayStory.php?code=${code}`)
+//   .then((res) => res.json())
+//   .then((data) => {
+//       if (data.playZappingu === '1') {
+//           // localStorage.setItem('playStory', '1'); // Set playStory to true vlt spaeter nomal genau luege
+
+//               window.location.href = 'pages/zappingu.html';
+//       }
+//   })
+//   .catch((error) => {
+//       console.error('Error:', error);
+//   });
+// }
+
+// setInterval(checkGameZappingu, 5000);
+
+
+
+window.onload = registrieren();
+
+
+function registrieren() {
+  let code = localStorage.getItem('randomCode');
+  let gkendama = localStorage.getItem('playKendama');
+  let ghikikomori = localStorage.getItem('playHikikomori');
+  let gtsundoku = localStorage.getItem('playTsundoku');
+  let gyarikomi = localStorage.getItem('playYarikomi');
+  let gzappingu = localStorage.getItem('playZappingu');
+
+  console.log(code, gkendama, ghikikomori, gtsundoku, gyarikomi, gzappingu);
+
+  beispielFetchFormulardaten(code, gkendama, ghikikomori, gtsundoku, gyarikomi, gzappingu);
+}
+
+function beispielFetchFormulardaten(code, gkendama, ghikikomori, gtsundoku, gyarikomi, gzappingu) {
+  let formData = new FormData();
+  formData.append('code', code);
+  formData.append('gkendama', gkendama);
+  formData.append('ghikikomori', ghikikomori);
+  formData.append('gtsundoku', gtsundoku);
+  formData.append('gyarikomi', gyarikomi);
+  formData.append('gzappingu', gzappingu);
+
+  fetch("https://hikaru.ch/php/registriereGames.php", {
+      body: formData,
+      method: "post",
+  })
+  .then((res) => {
+      return res.text();
+  })
+  .then((data) => {
+      document.querySelector('#server-message').innerHTML = data;
+  });
+}
+
+
+
+
+
+function setGamesZero() {
+
+  let code = localStorage.getItem("randomCode");
+  
+  let formData = new FormData();
+  formData.append('code', code);
+
+  fetch("https://hikaru.ch/php/setGamesToZero.php",
+      {
+          body: formData,
+          method: "post",
+          headers: {
+          }
+        })
+        .then((res) => {
+          localStorage.setItem('playTsundoku', '0');
+          localStorage.setItem('playHikikomori', '0');
+          localStorage.setItem('playKendama', '0');
+          localStorage.setItem('playYarikomi', '0');
+          localStorage.setItem('playZappingu', '0');
+            // Handle the response if needed
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+
+
+
+
 const svg = document.querySelector("#demo");
 const tl = gsap.timeline({onUpdate:onUpdate});
 let pt = svg.createSVGPoint();
