@@ -1,3 +1,38 @@
+updateYarikomi();
+
+
+function updateYarikomi() {
+
+  let code = localStorage.getItem("randomCode");
+  
+  let formData = new FormData();
+  formData.append('code', code);
+
+  fetch("https://hikaru.ch/php/yarikomiRedirect.php",
+      {
+          body: formData,
+          method: "post",
+          headers: {
+          }
+        })
+        .then((res) => {
+            // Handle the response if needed
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+function sendMessage(message) {
+  if (socket.readyState === WebSocket.OPEN) {
+      console.log('Sending message:', message);
+      socket.send(message);
+  } else {
+      console.log('WebSocket is not open. Ready state:', socket.readyState);
+  }
+}
+
+
 (function () {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
@@ -5092,3 +5127,109 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+function createHighlightInstruction() {
+  // Erstelle das Overlay-Element
+  const overlay = document.createElement('div');
+  overlay.id = 'highlight-overlay';
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0';
+  overlay.style.left = '0';
+  overlay.style.width = '100%';
+  overlay.style.height = '100%';
+  overlay.style.backgroundColor = 'rgba(0, 0, 0, 1)'; // Background fully black
+  overlay.style.color = 'black'; // Text color black
+  overlay.style.display = 'flex';
+  overlay.style.justifyContent = 'center';
+  overlay.style.alignItems = 'center';
+  overlay.style.zIndex = '9998';
+  overlay.style.textAlign = 'left';
+  overlay.style.padding = '20px';
+  overlay.style.fontWeight = '800';
+  overlay.style.fontSize = '2.2vw';
+  overlay.innerHTML = `  `;
+
+  const textInstruction = document.createElement('div');
+  textInstruction.style.position = 'fixed';
+  textInstruction.style.top = '50%'; // Positionierung anpassen
+  textInstruction.style.left = '50%'; // Positionierung anpassen
+  textInstruction.style.transform = 'translate(-50%, -50%)';
+  textInstruction.style.color = 'white'; // Text color black
+  textInstruction.style.fontSize = '12vw';
+  textInstruction.style.fontWeight = 'bold';
+  textInstruction.style.display = 'flex';
+  textInstruction.style.justifyContent = 'center'; // Horizontal zentrieren
+  textInstruction.style.alignItems = 'center'; // Vertikal zentrieren
+  textInstruction.style.zIndex = '10000';
+  textInstruction.innerText = 'Erziele mindestens 5 Punkte auf deinem Computer';
+
+  
+
+  const highlight = document.createElement('div');
+  highlight.style.position = 'fixed'; // Element fest positionieren
+  highlight.style.width = '200px'; // Größe des hervorgehobenen Bereichs anpassen
+  highlight.style.height = '200px'; // Größe des hervorgehobenen Bereichs anpassen
+  highlight.style.border = '4px solid black'; // Border fully black
+  highlight.style.transform = 'translate(-50%, -50%)';
+  highlight.style.borderRadius = '10px';
+  highlight.style.boxShadow = '0 0 15px rgba(0, 0, 0, 0.7)'; // Shadow in black
+  highlight.style.top = '56.4%'; // Positionierung anpassen
+  highlight.style.left = '43%'; // Positionierung anpassen
+  highlight.style.pointerEvents = 'none';
+
+  const highlight2 = document.createElement('div');
+  highlight2.style.position = 'fixed'; // Element fest positionieren
+  highlight2.style.width = '120px'; // Größe des hervorgehobenen Bereichs anpassen
+  highlight2.style.height = '50px'; // Größe des hervorgehobenen Bereichs anpassen
+  highlight2.style.border = '4px solid black'; // Border fully black
+  highlight2.style.transform = 'translate(-50%, -50%)';
+  highlight2.style.borderRadius = '10px';
+  highlight2.style.boxShadow = '0 0 15px rgba(0, 0, 0, 0.7)'; // Shadow in black
+  highlight2.style.top = '58.4%'; // Positionierung anpassen
+  highlight2.style.left = '52%'; // Positionierung anpassen
+  highlight2.style.pointerEvents = 'none';
+
+  const arrow = document.createElement('div');
+  highlight.style.position = 'fixed'; // Element fest positionieren
+  highlight.style.width = '12%'; // Größe des hervorgehobenen Bereichs anpassen
+  highlight.style.height = '20%'; // Größe des hervorgehobenen Bereichs anpassen
+  highlight.style.border = '4px solid black'; // Border fully black
+  highlight.style.transform = 'translate(-50%, -50%) scale(1)'; // Skalierung auf 1, um die Größe beizubehalten
+  highlight.style.borderRadius = '10px';
+  highlight.style.boxShadow = '0 0 15px rgba(0, 0, 0, 0.7)'; // Shadow in black
+  highlight.style.top = '76%'; // Positionierung anpassen
+  highlight.style.left = '46%'; // Positionierung anpassen
+  highlight.style.pointerEvents = 'none';
+  highlight.style.transformOrigin = 'center'; // Skalierungsursprung in der Mitte des Elements
+  highlight.style.zIndex = '9999';
+
+  const arrow2 = document.createElement('div');
+  highlight2.style.position = 'fixed'; // Element fest positionieren
+  highlight2.style.width = '8%'; // Größe des hervorgehobenen Bereichs anpassen
+  highlight2.style.height = '6%'; // Größe des hervorgehobenen Bereichs anpassen
+  highlight2.style.border = '4px solid black'; // Border fully black
+  highlight2.style.transform = 'translate(-50%, -50%) scale(1)'; // Skalierung auf 1, um die Größe beizubehalten
+  highlight2.style.borderRadius = '10px';
+  highlight2.style.boxShadow = '0 0 15px rgba(0, 0, 0, 0.7)'; // Shadow in black
+  highlight2.style.top = '58.4%'; // Positionierung anpassen
+  highlight2.style.left = '52%'; // Positionierung anpassen
+  highlight2.style.pointerEvents = 'none';
+  highlight2.style.transformOrigin = 'center'; // Skalierungsursprung in der Mitte des Elements
+  highlight2.style.zIndex = '9999';
+  
+  // Füge das Overlay zur Seite hinzu
+  document.body.appendChild(overlay);
+  document.body.appendChild(arrow);
+  document.body.appendChild(arrow2);  
+  document.body.appendChild(textInstruction);
+
+  
+  // Füge Event-Listener zum Bestätigen-Button hinzu
+
+
+;
+}
+
+// Rufe die Funktion zum Erstellen der Highlight-Anweisung auf
+if (window.innerWidth <= 768) {
+  createHighlightInstruction();
+}

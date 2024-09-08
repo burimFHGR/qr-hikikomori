@@ -1,0 +1,200 @@
+@font-face {
+    font-family: 'ACRealAdult';
+    src: url('/fonts/ACRealAdult.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'RawroteDemo';
+    src: url('/fonts/RawroteDemo.ttf') format('truetype');
+  }
+
+
+  *, *:before, *:after {
+    box-sizing: border-box;
+    font-family: 'ACRealAdult', sans-serif;
+  }
+
+img {
+  max-width: 100%;
+}
+
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://hikaru.ch/img/background.png);
+    background-size: cover;
+    font-family: 'ACRealAdult', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+body h1 {
+ font-family:  'RawroteDemo', sans-serif;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.book-wrapper {
+  position: relative;
+  width: 100%;  /* Passt die Breite an 80% des Viewports an */
+  max-width: 1200px; /* Maximalgröße für sehr große Bildschirme */
+  aspect-ratio: 1.4; /* Seitenverhältnis für das Buch */
+}
+
+.book-wrapper img {
+  filter: drop-shadow(15px 5px 5px #494338);
+  width: 100%;
+}
+
+.pages-container {
+    position: absolute;
+    top: 4%;
+    left: 3%;
+    width: 94%;
+    height: 92%;
+}
+
+.pages {
+  width: 100%;
+  height: 100%;
+}
+
+.pages [class^="page-num-"] {
+	background-image: url("https://img00.deviantart.net/cbb9/i/2005/258/c/4/paper_texture_v5_by_bashcorpo.jpg");
+    background-size: cover;
+    position: relative;
+    width: 50%;  /* Jede Seite nimmt 50% der Breite ein */
+    height: 100%;
+    float: left;
+}
+
+.pages-content {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: table;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10%;
+    font-size: calc(9px + 0.9vw); /* Dynamische Anpassung der Textgröße */
+}
+
+.content-inner {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: inherit; /* Übernimmt die dynamische Größe von .pages-content */
+}
+
+
+.page-num-1 .pages-background {
+    background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(https://openclipart.org/image/2400px/svg_to_png/242093/Vintage-Floral-Texture-Background.png);
+    background-size: cover;
+    opacity: 0.2;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+
+  /* Hover effect for h1 */
+  h1:hover {
+    cursor: url('https://raw.githubusercontent.com/slyka85/assets/master/questionmark.png'), auto; /* Custom question mark cursor */
+}
+
+/* Additional text on hover */
+.tooltip {
+    display: none;
+    position: absolute;
+    left: 20px;
+    top: 50px;
+    background-color: #e90e0e;
+    color: #fff;
+    padding: 20px; /* Increased padding for a larger tooltip */
+    border-radius: 10px; /* Slightly larger border radius */
+    font-size: 18px; /* Larger font size */
+    width: 90%; /* Wider tooltip */
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    z-index: 1; /* Ensure the tooltip is on top */
+}
+
+h1:hover + .tooltip {
+    display: block;
+}
+
+
+a {
+    color: #000000;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+}
+
+.go-back {
+  position: absolute;
+  top: 0px; /* Adjust according to your layout */
+  left: 30px; /* Adjust according to your layout */
+  z-index: 10;
+
+}
+
+.go-back img {
+  width: 150px; /* Adjust size according to your preference */
+  height: 150px; /* Adjust size according to your preference */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.go-back img:hover {
+  transform: scale(1.1);
+}
+
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.arrow-down {
+  position: absolute;
+  bottom: 50px; /* Positionierung am unteren Rand */
+  left: 90%;
+  transform: translateX(-50%);
+  animation: blink 1.5s infinite; /* Animation für das Blinken */
+  z-index: 1000; /* Sicherstellen, dass es über anderen Elementen angezeigt wird */
+  filter: none; /* Schatten entfernen */
+}
+
+.arrow-down img {
+  width: 50px; /* Größe des Pfeils */
+  height: 50px;
+  cursor: pointer;
+  filter: none; /* Sicherstellen, dass kein Schatten auf dem Bild ist */
+}
+
+.arrow-down:hover {
+  animation: none; /* Stoppt die Animation beim Hover */
+}

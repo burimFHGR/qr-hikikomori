@@ -96,8 +96,8 @@ function holeGames() {
       // localStorage-Eintrag setzen
       localStorage.setItem('playZappingu', '1');
       console.log('localStorage wurde aktualisiert: playZappingu = 1');
-  } else {
-      console.log('gzappingu ist nicht "1", kein Update erforderlich');
+  } else if ( json[0].gyarikomi === "1") {
+    localStorage.setItem('playYarikomi', '1');;
   }
 
 })
@@ -271,6 +271,7 @@ function showPopup(imageSrc) {
   // Animieren des Popups (z.B. mit GSAP)
   gsap.fromTo("#popup", { opacity: 0 }, { opacity: 1, duration: 0.5 });
 }
+
 
 // Event-Listener, um das Popup zu schließen, wenn man auf das Overlay klickt
 document.getElementById('popupOverlay').addEventListener('click', function() {

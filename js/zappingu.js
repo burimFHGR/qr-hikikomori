@@ -27,6 +27,17 @@ socket.addEventListener('message', function (event) {
     });
 });
 
+function sendMessage(message) {
+    console.log('Sending message:', message);
+    socket.send(message);
+}
+
+function handleChannelChange(direction) {
+    changeChannel(direction);
+    sendMessage(`changeChannel:${direction}`);
+}
+
+
 function updateZappingu() {
 
     let code = localStorage.getItem("randomCode");
@@ -49,14 +60,13 @@ function updateZappingu() {
           });
   }
 
-function sendMessage(message) {
-    console.log('Sending message:', message);
-    socket.send(message);
-}
-
-function handleChannelChange(direction) {
-    changeChannel(direction);
-    sendMessage(`changeChannel:${direction}`);
+  function sendMessage(message) {
+    if (socket.readyState === WebSocket.OPEN) {
+        console.log('Sending message:', message);
+        socket.send(message);
+    } else {
+        console.log('WebSocket is not open. Ready state:', socket.readyState);
+    }
 }
 
 const weirdVideoIds = {

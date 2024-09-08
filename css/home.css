@@ -36,6 +36,7 @@ body {
     padding-top: 100px;
     user-select: none;
     border-radius: 4px;
+    display: none;
   }
   
   #dial {
@@ -44,75 +45,82 @@ body {
     left: 50%;
   }
 
+  #popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%; /* Die Breite des Popups */
+    padding: 0px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
 
-          #popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50%;
-            padding: 0px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
+#popup img {
+    width: 100%;
+    height: auto;
+    max-height: 90vh; /* Maximale Höhe des Bildes */
+    object-fit: contain; /* Verhindert Verzerrungen */
+}
 
-        #popup img {
-            width: 100%;
-            height: auto;
-        }
+#popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #666;
+}
 
-        #popup-close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 20px;
-            color: #666;
-        }
+/* Hintergrundabdunklung */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+}
 
-        /* Hintergrundabdunklung */
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    padding: 20px;
+    border: 10px solid #000000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+    max-width: 90vw; /* Maximale Breite des Popups */
+    max-height: 100vh; /* Maximale Höhe des Popups */
+    width: 30%; /* Fixierte Breite */
+    height: auto;
+}
 
-        .popup {
-          display: none;
-          position: fixed;
-          z-index: 10;
-          padding: 20px;
-          background-color: white;
-          border: 2px solid #000;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-      }
+.popup img {
+    max-width: 100%;
+    max-height: 90vh; /* Maximale Höhe des Bildes im Popup */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
 
-      .popup img {
-          max-width: 100%;
-          height: auto;
-      }
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 5;
+}
 
-      .popup-overlay {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: rgba(0, 0, 0, 0.5);
-          z-index: 5;
-      }
-
-      .show {
-          display: block;
-      }
+.show {
+    display: block;
+}

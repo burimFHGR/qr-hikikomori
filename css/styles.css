@@ -2,8 +2,6 @@
     font-family: 'HikaruSchrift';
     src: url('/fonts/NikkyouSans.ttf');
     src: url('/fonts/NikkyouSans.ttf') format('embedded-opentype'),
-         url('/fonts/NikkyouSans.woff2') format('woff2'), 
-         url('/fonts/NikkyouSans.woff') format('woff'), 
          url('/fonts/NikkyouSans.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;

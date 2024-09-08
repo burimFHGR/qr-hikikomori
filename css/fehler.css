@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'HikaruSchrift';
+    src: url('/fonts/NikkyouSans.ttf');
+    src: url('/fonts/NikkyouSans.ttf') format('embedded-opentype'),
+         url('/fonts/NikkyouSans.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Verhindert das Scrollen */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('../img/error.png');
+    background-size: cover; /* Deckt den gesamten Hintergrund ab, auch wenn Teile abgeschnitten werden */
+    background-position: center; /* Zentriert das Bild */
+    background-repeat: no-repeat; /* Verhindert die Wiederholung des Bildes */
+    color: #fff; /* Textfarbe auf weiß ändern, damit es auf einem dunklen Bild lesbar ist */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%; /* Höhe des Body-Elements auf 100% des Viewports setzen */
+}
+
+
+h1 {
+    position: fixed;
+    top: 5%; /* Positioniert das Element 20% vom oberen Rand des Viewports */
+    left: 49%; /* Positioniert das Element 50% vom linken Rand */
+    transform: translateX(-50%); /* Verschiebt das Element um die Hälfte seiner eigenen Breite nach links, um es perfekt zu zentrieren */
+    font-family: 'HikaruSchrift', sans-serif;
+    font-size: 50px;
+    padding-bottom: 150%;
+}
+
+
+p {
+    position: fixed;
+    top: 85%; /* Positioniert das Element 20% vom oberen Rand des Viewports */
+    left: 40%; /* Positioniert das Element 50% vom linken Rand */
+    font-size: 30px;
+    text-align: center;
+    margin: 2 auto;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.7); /* Hintergrundfarbe mit Transparenz */
+    border-radius: 10px; /* Runde Ecken hinzufügen */
+}
+
+a {
+    color: #ffffff; /* Linkfarbe anpassen, damit sie gut sichtbar ist */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#container {
+padding-top: 20;
+}

@@ -2,8 +2,6 @@
     font-family: 'HikaruSchrift';
     src: url('/fonts/NikkyouSans.ttf');
     src: url('/fonts/NikkyouSans.ttf') format('embedded-opentype'),
-         url('/fonts/NikkyouSans.woff2') format('woff2'), 
-         url('/fonts/NikkyouSans.woff') format('woff'), 
          url('/fonts/NikkyouSans.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -105,13 +103,14 @@ header p {
 
 .description {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px; 
+    font-size: 4vw; 
     color: #666;
+    font-weight: bold;
 }
 
 .intro-text {
     font-family: 'Arial', sans-serif;
-    font-size: 27px; 
+    font-size: 4vw; 
     margin-bottom: 30px;
     color: #ffffff;
     line-height: 1.6;
@@ -200,15 +199,14 @@ footer p {
     }
 
     .description {
-        font-size: 21px; 
-    }
+        font-size: 4vw;     }
 
     .icon {
         font-size: 52.5px; 
     }
 
     .intro-text {
-        font-size: 24px; 
+        font-size: 4vw; 
     }
 }
 
@@ -238,15 +236,14 @@ footer p {
     }
 
     .description {
-        font-size: 21px; 
-    }
+        font-size: 4vw;     }
 
     .icon {
         font-size: 45px; 
     }
 
     .intro-text {
-        font-size: 21px; 
+        font-size: 4vw; 
     }
 }
 
@@ -260,15 +257,58 @@ footer p {
     }
 
     .description {
-        font-size: 18px; 
-    }
+        font-size: 4vw;    
+     }
 
     .icon {
         font-size: 42px; 
     }
 
     .intro-text {
-        font-size: 18px; 
+        font-size: 4vw; 
         font-weight: bold;
+        line-height: 1.25; /* Double the font size */
+
     }
 }
+
+h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 6vw; /* Anpassung der Schriftgröße in Bezug auf die Bildschirmbreite */
+    text-shadow: 
+        -3px -3px 0 #000,  
+        3px -3px 0 #000,
+        -3px 3px 0 #000,
+        3px 3px 0 #000;
+    margin-top: -20px;
+    word-wrap: break-word; /* Ermöglicht den Zeilenumbruch, falls der Text zu lang ist */
+}
+
+.intro-text {
+    font-family: 'Arial', sans-serif;
+    font-size: 4vw; /* Schriftgröße auch für kleine Bildschirme dynamisch anpassen */
+    margin-bottom: 30px;
+    color: #ffffff;
+    line-height: 1.2; /* Etwas engerer Zeilenabstand, um Platz zu sparen */
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px; /* Breite auf mobilen Geräten begrenzen */
+    padding: 20px;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 8vw; /* Kleinere Schriftgröße für kleinere Bildschirme */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 10vw; /* Weitere Reduzierung für sehr kleine Bildschirme */
+    }
+}
+

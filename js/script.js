@@ -339,14 +339,6 @@ $(document).keyup(function(e) {
 
 
 
-window.onload = function() {
-    initialize();
-    registrieren();
-    loescheCodes();
-    document.getElementById('muted').addEventListener('click', toggleMute);
-    document.getElementById('unmuted').addEventListener('click', toggleMute);
-}
-
 function registrieren() {
     let code = localStorage.getItem('randomCode');
     let playstory = localStorage.getItem('playStory');
@@ -386,7 +378,7 @@ function loescheCodes() {
 window.onload = function() {
     initialize();
     registrieren();
-    loescheCodes();
+    // loescheCodes();
     document.getElementById('muted').addEventListener('click', toggleMute);
     document.getElementById('unmuted').addEventListener('click', toggleMute);
 

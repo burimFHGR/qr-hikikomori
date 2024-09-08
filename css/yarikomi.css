@@ -174,9 +174,6 @@ body {
   .content { grid-area: 2 / 1 / 5 / 6; }
   .leaderboard { grid-area: 5 / 1 / 6 / 6; }
 
-body
-{
-}
 
 li, a, button,p {
   font-family: 'Roboto', sans-serif;
@@ -235,13 +232,6 @@ button:hover {
 .logo:hover {
   transform: scale(1.1);
 }
-
-
-
-
-
-
-
 
 
 body{
@@ -332,3 +322,37 @@ tbody tr:nth-child(even){
 h3{
 padding: 20px;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: relative;
+}
+
+.go-back {
+  position: absolute;
+  top: 0px; /* Adjust according to your layout */
+  left: 30px; /* Adjust according to your layout */
+  z-index: 10;
+
+}
+
+.go-back img {
+  width: 150px; /* Adjust size according to your preference */
+  height: 150px; /* Adjust size according to your preference */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.go-back img:hover {
+  transform: scale(1.1);
+}
+
+#canvas {
+  background: #fff;
+  position: absolute;
+  top: 50%; /* Mitte des Bildschirms vertikal */
+  transform: translate(-50%, -50%); /* Zentriert das Canvas sowohl horizontal als auch vertikal */
+}
+
