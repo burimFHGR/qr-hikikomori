@@ -1,13 +1,15 @@
 # Zweck
-Mein Projekt zielte darauf ab, eine Desktop-Webseite zu realisieren und zu gestalten, die einen umfassenden Einblick in meine Bachelorarbeit bietet. Diese setzt sich mit der Thematik von QR-Codes im Kontext von Marketing und Kommunikation auseinander. Der Schwerpunkt der Webseite lag vor allem auf der Anwendung von Javascript und PHP. Bei der Entwicklung habe ich bestehende, bereits codierte Projekte als Grundlage genutzt und sie in meine Webseite integriert, dabei wurden sie angepasst und ergänzt. Besonders hervorzuheben ist die Erweiterung und Neugestaltung des spielbaren QR-Snake Games. Dabei wurde zusätzlich ein Leaderboard implementiert, bei dem Nutzer ab einer bestimmten Punktzahl ihren Namen eingeben können, um in die Rangliste aufgenommen zu werden. Die Umsetzung erfolgte mithilfe von mySQL, PHP und Localstorage. Bei Erreichen eines neuen Highscores wird der bisherige Score überschrieben.
+Das Lehrprojekt thematisiert Hikikomori, ein Phänomen in Japan, bei dem sich
+Personen über längere Zeit sozial isolieren.
 
-# Quellen
-Zu den integrierten Projekten gehören: 
-- filterbare Bildergalerie (Quelle: https://www.codingnepalweb.com/filterable-image-gallery-javascript/) 
-- Snake-Game (Quelle: https://github.com/deepmeena70/snake-game-canvas-javascript)
-- Tilt Effekt (https://micku7zu.github.io/vanilla-tilt.js/)
-
-# Entwicklungshilfen
-Diese Tutorial-Reihe der Fachhochschule Graubünden war äussert wertvoll und dund hat entscheidend zur erfolgreichen Integration des FTP-Servers beigetragen. (https://www.youtube.com/watch?v=L8OoeIm2GqQ&list=UULFaSDafHu3CRoeKKTM3h-x0A&index=35)
-
-Während des Entwicklungsprozesses habe ich auf KI-Tools wie ChatGPT und CoPilot zurückgegriffen, um zusätzliche Ideen und Codevorschläge zu erhalten. Diese Unterstützung erwies sich zudem äusserst hilfreich beim Debugging und ermöglichte eine effiziente sowie kreative Umsetzung der Webseite.
+Als Hikikomori gilt man, wenn man sich für mindestens sechs Monate in seine
+Wohnung oder sein Zimmer zurückzieht und dabei kaum oder gar keinen Kontakt
+zur Aussenwelt pflegt. Meistens sind es junge Männer im späten Teenageralter bis
+zu den frühen 30ern, die davon betroffen sind.
+Die Gründe für dieses Verhalten sind vielfältig und reichen von sozialem Druck
+und Mobbing bis hin zu Versagensängsten und psychischen Erkrankungen. Die
+Pandemie hat diese Probleme noch verstärkt, da viele Menschen aufgrund der
+sozialen Einschränkungen und der wirtschaftlichen Unsicherheit weiter in die
+Isolation gedrängt wurden.
+In dem Inselstaat steigt die Zahl der Betroffenen stetig – und auch in der
+westlichen Welt breitet sich dieses Phänomen aus.
