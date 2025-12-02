@@ -1,89 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hikikomori</title>
-    <link rel="stylesheet" href="/css/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login — Hikokomori)</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#ef4444;--muted:#9aa5b1}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:linear-gradient(180deg,#071026, #0f1724);color:#e6eef6}
+    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:24px}
+    .card{width:100%;max-width:420px;background:rgba(255,255,255,0.03);padding:28px;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+    h1{margin:0 0 8px;font-size:20px}
+    p.lead{margin:0 0 18px;color:var(--muted);font-size:14px}
+    label{display:block;font-size:13px;margin-bottom:6px}
+    input[type=text],input[type=password]{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:inherit;box-sizing:border-box}
+    .actions{display:flex;align-items:center;justify-content:space-between;margin-top:16px}
+    button{background:var(--accent);border:0;padding:10px 14px;border-radius:8px;color:white;font-weight:600;cursor:pointer}
+    .info{font-size:13px;color:var(--muted)}
+    .error{margin-top:14px;padding:10px;border-radius:8px;background:rgba(239,68,68,0.12);color:#ffdede;border:1px solid rgba(239,68,68,0.18);display:none}
+    footer{margin-top:18px;color:var(--muted);font-size:12px;text-align:center}
+    .small{font-size:12px}
+    a{color:#a8cfff;text-decoration:none}
+  </style>
 </head>
 <body>
-    <div id="preloader">
-        <div id="preloader-content">
-        <img src="/img/loading.gif" alt="Loading...">
-        <p>Bitte warten...</p>
-    </div>
-    </div>
-    <div id="outter" class="circle"></div>
-    <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-     <div class="circle"></div>
-    <img id="muted" src="img/muted.svg" alt="muted">
-    <img id="unmuted" src="img/unmuted.svg" alt="unmuted">
-    <audio id="autoPlayAudio" autoplay loop>
-        <source src="/music/tick_tack.mp3" type="audio/mpeg"> </audio>
+  <div class="wrap">
+    <div class="card" role="region" aria-labelledby="loginTitle">
+      <p style="margin-bottom:18px; font-size:14px; color:#ffb4b4; background:rgba(255,0,0,0.08); padding:12px; border-radius:8px; border:1px solid rgba(255,0,0,0.18);">Da dieses Projekt derzeit am SwissHacks 2026 Wettbewerb teilnimmt, ist die Webseite vorübergehend nur mit Login zugänglich. Nach Abschluss des Wettbewerbs wird sie wieder öffentlich verfügbar sein.</p>
+      <h1 id="loginTitle">Login hikaru.ch</h1>
 
-    <div class="video-background">
-        <video id="vidTicken" autoplay loop muted style="display:block;">
-            <source src="/vids/5sek.mov" type="video/mp4">
-            Ihr Browser unterstützt das Video-Tag nicht.
-        </video>
-    </div>
-    <div class="menu">
-      <span class="menu-circle"></span>
-      <a href="#" class="menu-link">
-        <span class="menu-icon">
-          <span class="menu-line menu-line-1"></span>
-          <span class="menu-line menu-line-2"></span>
-          <span class="menu-line menu-line-3"></span>
-        </span>
-      </a>
-    </div>
-    
-    <div class="menu-overlay">
-        <div class="overlay-info">
-            <div class="image-container">
-                <img id="img1" class="hidden-image" src="img/locked/Hidden_1.png" alt="Gegenstand1">
-                <img id="img2" class="hidden-image" src="img/locked/Hidden_2.png" alt="Gegenstand2">
-                <img id="img3" class="hidden-image" src="img/locked/Hidden_1.png" alt="Gegenstand3">
-                <img id="img4" class="hidden-image" src="img/locked/Hidden_1.png" alt="Gegenstand4">
-                <img id="img5" class="hidden-image" src="img/locked/Hidden_1.png" alt="Gegenstand5">
-            </div>
-            
-      </div>
-      <div id="modal-container">
-            <h2>Tsundoku</h2>
-          </div>
-    </div>
-    <div class="content">
-        <h1>Hikikomori</h1>
-        <p class="bottom-instruction">QR-Code scannen und Code auf dem Handy eingeben, um die Story zu starten.</p>
-        <!-- <p id="status">Status: Warten auf Scan...</p> -->
-        <p id="code">Code: Wird generiert...</p>
-        <p class="halsbandtext">Code:</p>
-        <div id="mobile-warning" style="display:none;">
-            <p>Bitte besuchen Sie <a href="hikaru.ch">hikaru.ch</a> auf einem Computer, um fortzufahren.</p>
+      <form id="loginForm" autocomplete="off" aria-describedby="infoText">
+        <div>
+          <label for="user">Benutzername</label>
+          <input id="user" name="user" type="text" placeholder="Benutzername eingeben" required />
         </div>
-        <div id="server-message"></div> 
-    </div>
 
-    <script src="/js/map.js"></script>
-    <script src="/js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <div style="margin-top:12px">
+          <label for="pass">Passwort</label>
+          <input id="pass" name="pass" type="password" placeholder="Passwort" required />
+        </div>
+
+        <div class="actions">
+          <span class="info small">Noch kein Konto? <a href="mailto:burim.spahiu@hotmail.de">Login per Anfrage erstellen</a></span>
+          <button type="submit">Einloggen</button>
+        </div>
+
+        <div id="errorBox" class="error" role="alert">Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Zugangsdaten und versuchen Sie es erneut.</div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const form = document.getElementById('loginForm');
+      const err = document.getElementById('errorBox');
+
+      // Immer fehlschlagen — unabhängig von Eingabe
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        // kurze Animation / Feedback
+        err.style.display = 'block';
+        err.textContent = 'Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Zugangsdaten und versuchen Sie es erneut.';
+        // kleine Shake-Animation
+        form.classList.remove('shake');
+        void form.offsetWidth; // reflow
+        form.classList.add('shake');
+        // optional: Fokus zurück auf Nutzerfeld
+        document.getElementById('user').focus();
+      });
+
+      // CSS für Shake per JS, um alles in einer Datei zu halten
+      const style = document.createElement('style');
+      style.textContent = `@keyframes s{0%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-4px)}100%{transform:translateX(0)}}.shake{animation:s .45s ease}`;
+      document.head.appendChild(style);
+    })();
+  </script>
 </body>
 </html>
